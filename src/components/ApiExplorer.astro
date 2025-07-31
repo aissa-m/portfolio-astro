@@ -1,0 +1,125 @@
+<section id="api-explorer" class="py-16 px-5 md:px-12 lg:px-24 bg-[#f0fdf4]">
+  <div
+    class="glass rounded-xl p-8 shadow-xl backdrop-blur-md border border-white/20 bg-white/30"
+  >
+    <h2
+      class="text-3xl font-bold text-center text-emerald-600 mb-6 flex justify-center items-center gap-2"
+    >
+      🧪 <span>API Explorer</span>
+    </h2>
+    <p
+      class="text-center text-sm md:text-base mb-6 max-w-2xl mx-auto"
+    >
+      Esta sección interactiva conecta directamente con mi API REST personal.
+      Aquí puedes explorar en tiempo real los datos estructurados de mi
+      portfolio, como proyectos, experiencias o habilidades, obtenidos desde el
+      backend que he desarrollado. Una forma transparente de mostrar cómo diseño
+      y consumo APIs en mis aplicaciones full-stack.
+    </p>
+
+    <div id="buttons" class="flex flex-wrap justify-center gap-3 mb-6">
+      <!-- Botones generados dinámicamente por script -->
+    </div>
+    <div
+      class="bg-[#1e1e1e] text-green-300 p-4 rounded-lg text-sm max-h-[500px] overflow-auto font-mono shadow-inner"
+    >
+      <p id="endpoint-info" class="mt-4 mb-4 text-sm text-emerald-300">
+        Endpoint: <code class="bg-black/30 px-2 py-1 rounded"
+          >GET /api/proyectos</code
+        >
+      </p>
+      <pre
+        id="json-output"
+        class="transition-all duration-500 ease-in-out opacity-0 translate-y-4 whitespace-pre-wrap md:whitespace-pre">Cargando datos...</pre>
+    </div>
+  </div>
+
+  <script type="module">
+    const endpoints = [
+      {
+        name: "Proyectos",
+        url: "https://my-portfolio-mirnv.ondigitalocean.app/api/proyectos",
+      },
+      {
+        name: "Experiencias",
+        url: "https://my-portfolio-mirnv.ondigitalocean.app/api/experiencias",
+      },
+      {
+        name: "Educaciones",
+        url: "https://my-portfolio-mirnv.ondigitalocean.app/api/educaciones",
+      },
+      {
+        name: "Habilidades",
+        url: "https://my-portfolio-mirnv.ondigitalocean.app/api/habilidades",
+      },
+      {
+        name: "Servicios",
+        url: "https://my-portfolio-mirnv.ondigitalocean.app/api/servicios",
+      },
+    ];
+
+    const buttonsContainer = document.getElementById("buttons");
+    const output = document.getElementById("json-output");
+    const endpointInfo = document.getElementById("endpoint-info");
+
+    let activeButton = null;
+
+    function renderButtons() {
+      endpoints.forEach((endpoint) => {
+        const btn = document.createElement("button");
+        console.log(endpoint.name);
+        if(endpoint.name === "Educaciones"){
+          btn.textContent = "Estudios";
+        }else{
+          btn.textContent = endpoint.name;
+        }
+        btn.className =
+          "bg-white/60 text-slate-900 font-semibold px-4 py-2 rounded-full shadow hover:bg-white/80 transition backdrop-blur text-sm md:text-base";
+        btn.addEventListener("click", async () => {
+          if (activeButton) {
+            activeButton.classList.remove("bg-emerald-500", "text-white");
+            activeButton.classList.add("bg-white/60", "text-slate-900");
+          }
+          // Fade out + deslizamiento
+          output.classList.remove("opacity-100", "translate-y-0");
+          output.classList.add("opacity-0", "translate-y-2");
+          btn.classList.remove("bg-white/60", "text-slate-900");
+          btn.classList.add("bg-emerald-500", "text-white");
+          activeButton = btn;
+
+          // Espera a que la animación se complete antes de cambiar contenido
+          setTimeout(async () => {
+            output.textContent = "Cargando...";
+            endpointInfo.innerHTML = `Endpoint: <code class="bg-black/30 px-2 py-1 rounded">GET ${endpoint.url.replace(
+              "https://my-portfolio-mirnv.ondigitalocean.app",
+              "",
+            )}</code>`;
+
+            const res = await fetch(endpoint.url);
+            const json = await res.json();
+
+            const cleanJson = json.length ? json : ["No hay datos disponibles"];
+            output.textContent = JSON.stringify(cleanJson, null, 2);
+
+            // Fade in + volver a la posición original
+            output.classList.remove("opacity-0", "translate-y-2");
+            output.classList.add("opacity-100", "translate-y-0");
+          }, 200); // 200 ms → a juego con `duration-500` de la transición
+        });
+
+        buttonsContainer.appendChild(btn);
+      });
+    }
+
+    // Inicializa al cargar
+    renderButtons();
+    document.querySelector("#buttons button")?.click();
+    // Muestra el primero por defecto
+    (async () => {
+      const res = await fetch(endpoints[0].url);
+      const json = await res.json();
+      output.textContent = JSON.stringify(json, null, 2);
+      output.classList.add("opacity-100", "translate-y-0");
+    })();
+  </script>
+</section>
