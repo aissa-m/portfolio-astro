@@ -1,0 +1,101 @@
+---
+interface Props {
+  tech: string[];
+  size?: number;
+  class?: string;
+}
+
+const { tech = [], size = 28, class: extraClass = "" } = Astro.props;
+
+// Mapa tech -> { src, alt, title }
+const ICONS: Record<string, { src: string; alt: string; title?: string }> = {
+  // Core web
+  html: { src: "/icons/html5.svg", alt: "HTML5" },
+  css: { src: "/icons/css.svg", alt: "CSS" },
+  javascript: { src: "/icons/javascript.svg", alt: "JavaScript" },
+  typescript: { src: "/icons/typescript.svg", alt: "TypeScript" },
+
+  // Frameworks / libs
+  react: { src: "/icons/react.svg", alt: "React" },
+  nextjs: { src: "/icons/nextjs.svg", alt: "Next.js" },
+  astro: { src: "/icons/astro.svg", alt: "Astro" },
+  angular: { src: "/icons/angular.svg", alt: "Angular" },
+  tailwind: { src: "/icons/tailwindcss.svg", alt: "Tailwind CSS" },
+  bootstrap: { src: "/icons/bootstrap.svg", alt: "Bootstrap" },
+  express: { src: "/icons/express.svg", alt: "Express" },
+  nestjs: { src: "/icons/nestjs.svg", alt: "NestJS" },
+  node: { src: "/icons/nodejs.svg", alt: "Node.js" },
+
+  // PHP
+  php: { src: "/icons/php.svg", alt: "PHP" },
+  laravel: { src: "/icons/laravel.svg", alt: "Laravel" },
+  symfony: { src: "/icons/symfony.svg", alt: "Symfony" },
+
+  // Databases & ORM
+  mysql: { src: "/icons/mysql.svg", alt: "MySQL" },
+  phpmyadmin: { src: "/icons/phpmyadmin.svg", alt: "phpMyAdmin" },
+  postgresql: { src: "/icons/postgresql.svg", alt: "PostgreSQL" },
+  prisma: { src: "/icons/prisma.svg", alt: "Prisma" },           
+
+  // DevOps / Deploy
+  git: { src: "/icons/git.svg", alt: "Git" },
+  github: { src: "/icons/github.svg", alt: "GitHub" },
+  docker: { src: "/icons/docker.svg", alt: "Docker" },
+  ubuntu: { src: "/icons/ubuntu.svg", alt: "Ubuntu" },
+  netlify: { src: "/icons/netlify.svg", alt: "Netlify" },
+  vercel: { src: "/icons/vercel.svg", alt: "Vercel" },
+  render: { src: "/icons/render.svg", alt: "Render" },           
+  digitalocean: { src: "/icons/digitalocean.svg", alt: "DigitalOcean" }, 
+
+  // Otros
+  postman: { src: "/icons/postman.svg", alt: "Postman" },
+  swagger: { src: "/icons/swagger.svg", alt: "Swagger" },
+  vite: { src: "/icons/vite.svg", alt: "Vite" },
+  json: { src: "/icons/json.svg", alt: "JSON" },
+};
+
+// Helpers
+const sizeClass = `h-[${size}px] w-[${size}px]`;
+function labelFromKey(k: string) {
+  return k
+    .replace(/[-_]/g, " ")
+    .replace(/\b\w/g, (m) => m.toUpperCase());
+}
+---
+
+<div class={`mt-3 ${extraClass}`}>
+  <p class="text-[0.75rem] uppercase tracking-wide text-slate-700/80 mb-2">
+    Stack
+  </p>
+  <div class="flex flex-wrap items-center gap-3" aria-label="Tecnologías usadas">
+    {tech.map((key) => {
+      const k = key.toLowerCase().trim();
+      const found = ICONS[k];
+
+      if (found) {
+        return (
+          <img
+            width="30"
+            src={found.src}
+            alt={found.alt}
+            title={found.alt}
+            class={`select-none ${sizeClass}`}
+            loading="lazy"
+            decoding="async"
+          />
+        );
+      }
+
+      const label = labelFromKey(k);
+      return (
+        <span
+          class="px-2 py-1 text-[0.7rem] rounded-md bg-white/30 border border-white/40 text-slate-800 backdrop-blur"
+          title={label}
+          aria-label={label}
+        >
+          {label}
+        </span>
+      );
+    })}
+  </div>
+</div>
