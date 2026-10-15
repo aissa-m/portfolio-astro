@@ -1,12 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
-  h1, h2 {
-    @apply font-bitcount;
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+  }
+  h1, h2, h3 {
+    @apply font-display;
+  }
+  ::selection {
+    @apply bg-lemon text-ink;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 }
-.glass {
-  @apply backdrop-blur-lg bg-white/10 border border-white/20 shadow-lg;
-}
 
+@layer components {
+  /* Lienzo donde los tres colores se funden */
+  .mesh {
+    @apply relative isolate overflow-hidden;
+    background-color: #DCE8EC;
+  }
+  .mesh-blob {
+    @apply pointer-events-none absolute -z-10 rounded-full blur-3xl animate-blob;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:shadow-[0_10px_30px_-10px_rgb(15_27_45/0.6)];
+  }
+  .btn-light {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink/80 bg-white/60 px-6 py-3 font-semibold text-ink transition hover:-translate-y-0.5 hover:bg-white;
+  }
+
+  /* Pegatinas */
+  .sticker {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink px-4 py-2 text-sm font-semibold text-ink shadow-[3px_3px_0_0_#0F1B2D];
+  }
+
+  .tag {
+    @apply rounded-full bg-ink/5 px-3 py-1 text-xs font-medium text-ink/70;
+  }
+}

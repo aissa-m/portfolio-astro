@@ -1,20 +1,13 @@
-<footer class="relative bg-white/20 backdrop-blur-md border-t border-white/30 text-slate-800 py-10 text-center text-sm mt-16 shadow-inner">
-  <!-- Contenido del footer -->
-  <div class="max-w-6xl mx-auto px-4 relative z-10">
-    <p class="mb-2">
-      &copy; {new Date().getFullYear()} <strong class="text-emerald-600">Aissa</strong>.
+<footer class="px-4 pb-10">
+  <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-ink/15 pt-8 text-sm text-ink/60 md:flex-row">
+    <p class="flex items-center gap-2">
+      <img src="/icons/brand/aissa-logo.png" alt="" class="h-5 w-5" />
+      &copy; {new Date().getFullYear()} Aissa · Hecho con Astro y Tailwind
     </p>
-    <p>
-      Hecho con <span class="text-pink-500 text-lg">❤</span> usando <strong>Astro</strong> y <strong>TailwindCSS</strong>.
-    </p>
-
-    <div class="mt-4 flex justify-center gap-4 text-slate-700 text-xl">
-      <a href="mailto:issamaymoutt17@gmail.com" class="hover:text-emerald-600 transition">📧</a>
-      <a href="https://github.com/aissa-m" target="_blank" class="hover:text-emerald-600 transition">🐙</a>
-      <a href="https://www.linkedin.com/in/issa-maymoutt/" target="_blank" class="hover:text-emerald-600 transition">🔗</a>
+    <div class="flex gap-6 font-medium">
+      <a href="mailto:issamaymoutt17@gmail.com" class="transition hover:text-sonic">Email</a>
+      <a href="https://github.com/aissa-m" target="_blank" rel="noopener" class="transition hover:text-sonic">GitHub</a>
+      <a href="https://www.linkedin.com/in/issa-maymoutt/" target="_blank" rel="noopener" class="transition hover:text-sonic">LinkedIn</a>
     </div>
   </div>
-
-  <!-- Glow decorativo inferior -->
-  <div class="absolute -bottom-20 left-1/2 -translate-x-1/2 w-[25rem] h-[25rem] bg-emerald-400 opacity-10 rounded-full blur-3xl z-0 pointer-events-none"></div>
 </footer>

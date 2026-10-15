@@ -3,23 +3,24 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
-import Skills from "../components/Skills.astro";
 import Projects from "../components/Projects.astro";
+import Services from "../components/Services.astro";
+import Experiencia from "../components/Exp.astro";
+import Skills from "../components/Skills.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
-import Experiencia from "../components/Exp.astro";
-import ApiExplorer from "../components/ApiExplorer.astro";
 ---
-<link href="https://fonts.googleapis.com/css2?family=Bitcount+Prop+Single&display=swap" rel="stylesheet">
 
-<BaseLayout>    
+<BaseLayout>
     <Header />
-    <Hero />
-    <About />
-    <Experiencia />
-    <Skills />
-    <Projects />    
-    <Contact />
-    <ApiExplorer />
+    <main>
+        <Hero />
+        <Projects />
+        <Services />
+        <About />
+        <Experiencia />
+        <Skills />
+        <Contact />
+    </main>
     <Footer />
 </BaseLayout>

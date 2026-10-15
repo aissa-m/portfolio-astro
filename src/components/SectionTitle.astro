@@ -1,0 +1,20 @@
+---
+interface Props {
+  num: string;
+  kicker: string;
+  title: string;
+  intro?: string;
+}
+const { num, kicker, title, intro } = Astro.props;
+---
+<div class="mb-10 grid gap-4 md:grid-cols-[1fr_1fr] md:items-end">
+  <div>
+    <p class="mb-3 flex items-center gap-3 text-sm font-semibold text-sonic">
+      <span class="font-display text-base">{num}</span>
+      <span class="h-px w-10 bg-sonic/40"></span>
+      {kicker}
+    </p>
+    <h2 class="text-4xl font-extrabold tracking-tight md:text-6xl">{title}</h2>
+  </div>
+  {intro && <p class="max-w-md text-lg text-ink/60 md:justify-self-end">{intro}</p>}
+</div>

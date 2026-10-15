@@ -1,28 +1,46 @@
 ---
 ---
-<section id="inicio" class="relative py-32 overflow-hidden">
-  <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
+<section id="inicio" class="px-4 pt-24 md:pt-28">
+  <div class="mesh mx-auto max-w-6xl rounded-[2.5rem] px-6 py-16 md:px-14 md:py-24">
+    <!-- Manchas de color que se mezclan -->
+    <div class="mesh-blob -left-24 -top-24 h-[28rem] w-[28rem] bg-lemon/90"></div>
+    <div class="mesh-blob right-[-10%] top-[-20%] h-[32rem] w-[32rem] bg-sonic/70 [animation-delay:-6s]"></div>
+    <div class="mesh-blob bottom-[-30%] left-[30%] h-[30rem] w-[30rem] bg-sea [animation-delay:-12s]"></div>
 
-    <div class="mx-auto max-w-3xl bg-white/30 backdrop-blur-xl border border-white/40 rounded-2xl shadow-2xl px-8 py-14">
-      <h1 class="text-4xl md:text-6xl font-extrabold text-emerald-600 mb-6 tracking-tight leading-tight animate-fade-up">
-        Hola, soy Aissa
-      </h1>
+    <div class="grid items-center gap-12 md:grid-cols-[1.5fr_1fr]">
+      <div class="animate-fade-up">
+        <p class="mb-6 inline-block rounded-full bg-white/70 px-4 py-1.5 text-sm font-semibold">
+          👋 Hola, soy Aissa
+        </p>
 
-      <p class="text-lg md:text-xl text-slate-800 mb-10 animate-fade-up delay-100">
-        Desarrollador Full-Stack enfocado en calidad, claridad y soluciones útiles. Me encanta enseñar y crear experiencias limpias y modernas.
-      </p>
+        <h1 class="text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl">
+          Construyo productos que la gente
+          <span class="relative inline-block">
+            usa de verdad.
+            <svg class="absolute -bottom-3 left-0 w-full" viewBox="0 0 300 14" fill="none" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M2 9C60 3 140 2 298 7" stroke="#0F1B2D" stroke-width="4" stroke-linecap="round" />
+            </svg>
+          </span>
+        </h1>
 
-      <div class="flex justify-center flex-wrap gap-4 animate-fade-up delay-200">
-        <a href="#proyectos" class="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold shadow transition">
-          🚀 Ver proyectos
-        </a>
-        <a target="_blank" href="/job/CV_ISSA_MAYIMOUT.pdf" class="border border-emerald-500 hover:bg-emerald-500 hover:text-white text-emerald-600 px-6 py-3 rounded-lg font-semibold transition">
-          📄 Descargar CV
-        </a>
+        <p class="mt-8 max-w-xl text-lg text-ink/75 md:text-xl">
+          Desarrollador Full-Stack en Alicante. Diseño, programo y lanzo mis propias plataformas,
+          y entre medias enseño a otros a hacer lo mismo.
+        </p>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="#proyectos" class="btn-dark">Ver mis proyectos ↓</a>
+          <a href="/job/CV_ISSA_MAYIMOUT.pdf" target="_blank" class="btn-light">Descargar CV</a>
+        </div>
+      </div>
+
+      <!-- Logo + pegatinas -->
+      <div class="relative mx-auto aspect-square w-64 md:w-full md:max-w-sm">
+        <img src="/icons/brand/aissa-logo.png" alt="Logo de Aissa" class="h-full w-full object-contain p-8 drop-shadow-[0_20px_30px_rgb(15_27_45/0.25)]" />
+        <span class="sticker absolute -left-4 top-6 -rotate-6 bg-lemon">⚡ Full-Stack</span>
+        <span class="sticker absolute -right-2 top-1/2 rotate-3 bg-white">🧑‍🏫 Profe desde 2022</span>
+        <span class="sticker absolute bottom-4 left-2 -rotate-2 bg-sea">🚀 3 productos online</span>
       </div>
     </div>
   </div>
-
-  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-emerald-300 opacity-20 rounded-full blur-3xl z-0"></div>
-  <div class="absolute -bottom-32 right-0 w-[25rem] h-[25rem] bg-indigo-200 opacity-10 rounded-full blur-3xl z-0"></div>
 </section>

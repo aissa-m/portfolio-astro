@@ -1,122 +1,83 @@
 ---
-import TeckRow from "./TeckRow.astro"
+import SectionTitle from "./SectionTitle.astro";
+
+const projects = [
+  {
+    name: "Ustadi",
+    url: "https://ustadi-virid.vercel.app/",
+    icon: "/icons/brand/ustadi-icon.png",
+    status: "Online",
+    tagline: "Clases particulares en Mauritania",
+    description:
+      "Marketplace que conecta alumnos con profesores particulares en Mauritania, al estilo de Superprof. Se busca por asignatura, nivel, ciudad y presupuesto, y se contacta directamente con el profesor, sin intermediarios ni comisiones.",
+    highlights: ["Árabe · Francés · Inglés", "Reseñas de alumnos", "De primaria a universidad"],
+    tile: "bg-gradient-to-br from-sea to-lemon/70",
+  },
+  {
+    name: "Norn",
+    url: "https://nornapp.app/",
+    icon: "/icons/brand/norn-mark.png",
+    status: "Online",
+    tagline: "Clientes para quien vende webs",
+    description:
+      "Herramienta de prospección para freelancers y agencias. Encuentra negocios locales sin web o con una web mala, los puntúa según la oportunidad de venta y permite seguir cada lead desde el primer contacto hasta el cierre.",
+    highlights: ["Scoring de oportunidad", "Pipeline de ventas", "Suscripción con Stripe"],
+    tile: "bg-gradient-to-br from-lemon to-sea",
+  },
+  {
+    name: "Trabexia",
+    url: "https://trabexia-micro-saas.vercel.app/",
+    icon: "/icons/brand/trabexia-mark.png",
+    status: "Lo uso a diario",
+    tagline: "Empleo en Europa",
+    description:
+      "Portal de empleo para perfiles de logística, transporte y mantenimiento. El tráfico llega desde mi cuenta de TikTok; yo filtro a los candidatos y los paso a reclutadores que los colocan en España, Alemania e Irlanda. Es mi herramienta de trabajo diaria.",
+    highlights: ["Captación vía TikTok", "Candidatos para toda Europa", "En uso real cada día"],
+    tile: "bg-gradient-to-br from-sea/70 to-sonic/60",
+  },
+];
 ---
 
-<section id="proyectos" class="relative py-24">
-  <div class="max-w-6xl mx-auto px-6 relative z-10">
-    <h2 class="text-4xl font-bitcount font-extrabold text-emerald-600 text-center mb-16">Proyectos</h2>
+<section id="proyectos" class="px-4 py-16 md:py-24">
+  <div class="mx-auto max-w-6xl">
+    <SectionTitle
+      num="01"
+      kicker="Proyectos"
+      title="Cosas que he lanzado"
+      intro="Productos reales, en producción y con usuarios. Los he diseñado, programado y sacado adelante yo."
+    />
 
-    <div class="space-y-20">
-
-      <!-- TutorTools -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-3xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center hover:shadow-2xl transition hover:scale-[1.01]">
-        <img src="/projects/tutortools.jpeg" alt="TutorTools" class="max-w-[500px] w-full rounded-2xl shadow-lg" loading="lazy" decoding="async" />
-        <div class="flex-1 space-y-4">
-          <h3 class="text-2xl font-bold text-emerald-600">TutorTools</h3>
-          <p class="text-slate-800 text-sm">
-            Plataforma educativa para profesores particulares. Gestión de alumnos, asignaturas e ingresos. Desarrollada con PHP, JS y MySQL.
-            Desplegada en una máquina virtual LAMP en DigitalOcean.
-          </p>
-
-          <!-- Tech -->
-          <TeckRow
-            tech={[
-              "php",
-              "javascript",
-              "mysql",
-              "phpmyadmin",
-              "bootstrap",
-              "ubuntu",
-              "digitalocean",
-              "github"
-            ]}
-            size={28}
-          />
-
-          <div class="flex gap-6 items-center mt-2">
-            <a href="https://tutor-tools.click/web/home.html" target="_blank" class="text-sm text-emerald-600 font-semibold hover:underline">
-              🔗 Ver proyecto
-            </a>
-            <a href="https://github.com/aissa-m/TutorTools" target="_blank" class="text-sm text-slate-600 hover:text-black transition">
-              🐙 GitHub
-            </a>
+    <div class="space-y-5">
+      {projects.map((p, i) => (
+        <a
+          href={p.url}
+          target="_blank"
+          rel="noopener"
+          class="group grid items-center gap-6 rounded-[2rem] border border-ink/10 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-[0_24px_50px_-24px_rgb(15_27_45/0.35)] md:grid-cols-[auto_1fr_auto] md:gap-10 md:p-8"
+        >
+          <div class={`flex h-28 w-28 items-center justify-center rounded-3xl md:h-36 md:w-36 ${p.tile} ${i % 2 ? "rotate-3" : "-rotate-3"} transition duration-300 group-hover:rotate-0 group-hover:scale-105`}>
+            <img src={p.icon} alt={`Logo de ${p.name}`} class="h-16 w-16 rounded-2xl object-contain md:h-20 md:w-20" loading="lazy" />
           </div>
-        </div>
-      </div>
 
-      <!-- Portfolio -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-3xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center hover:shadow-2xl transition hover:scale-[1.01]">
-        <img src="/projects/porfolio-1.jpeg" alt="Portfolio Fullstack" class="max-w-[500px] w-full rounded-2xl shadow-lg" loading="lazy" decoding="async" />
-        <div class="flex-1 space-y-4">
-          <h3 class="text-2xl font-bold text-emerald-600">Portfolio con React</h3>
-          <p class="text-slate-800 text-sm">
-            Portfolio personal con backend en Laravel y frontend en React. Incluye panel de administración propio, despliegue en Netlify y backend en DigitalOcean.
-          </p>
-
-          <!-- Tech -->
-          <TeckRow
-            tech={[
-              "react",
-              "laravel",
-              "php",
-              "mysql",
-              "netlify",
-              "digitalocean",
-              "github"
-            ]}
-            size={28}
-          />
-
-          <div class="flex gap-6 items-center mt-2">
-            <a href="https://aissa-portfolio.com" target="_blank" class="text-sm text-emerald-600 font-semibold hover:underline">
-              🔗 Ver portfolio
-            </a>
-            <a href="https://github.com/aissa-m/frontend-porfolio" target="_blank" class="text-sm text-slate-600 hover:text-black transition">
-              🐙 GitHub
-            </a>
+          <div>
+            <div class="flex flex-wrap items-center gap-3">
+              <h3 class="text-3xl font-extrabold tracking-tight md:text-4xl">{p.name}</h3>
+              <span class="inline-flex items-center gap-1.5 rounded-full bg-lemon px-3 py-1 text-xs font-bold">
+                <span class="h-1.5 w-1.5 rounded-full bg-ink"></span>{p.status}
+              </span>
+            </div>
+            <p class="mt-1 font-semibold text-sonic">{p.tagline}</p>
+            <p class="mt-3 max-w-2xl leading-relaxed text-ink/70">{p.description}</p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {p.highlights.map((h) => <li class="tag">{h}</li>)}
+            </ul>
           </div>
-        </div>
-      </div>
 
-      <!-- QuizzMaster -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-3xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row gap-8 items-center hover:shadow-2xl transition hover:scale-[1.01]">
-        <img src="/projects/quizmaster.jpeg" alt="QuizzMaster" class="max-w-[500px] w-full rounded-2xl shadow-lg" loading="lazy" decoding="async" />
-        <div class="flex-1 space-y-4">
-          <h3 class="text-2xl font-bold text-emerald-600">QuizzMaster</h3>
-          <p class="text-slate-800 text-sm">
-            Plataforma de cuestionarios de cultura general (tipo test) full-stack con Next.js y TypeScript, usando Prisma y PostgreSQL.
-            Despliegue en Vercel y base de datos gestionada en Render.
-          </p>
-
-          <!-- Tech -->
-          <TeckRow
-            tech={[
-              "nextjs",
-              "typescript",
-              "prisma",
-              "postgresql",
-              "tailwind",
-              "vercel",
-              "render",
-              "github"
-            ]}
-            size={28}
-          />
-
-          <div class="flex gap-6 items-center mt-2">
-            <a href="https://quizzmaster-lovat.vercel.app/" target="_blank" class="text-sm text-emerald-600 font-semibold hover:underline">
-              🔗 Ver proyecto
-            </a>
-            <a href="https://github.com/aissa-m/quizzmaster" target="_blank" class="text-sm text-slate-600 hover:text-black transition">
-              🐙 GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-
+          <span class="hidden h-14 w-14 items-center justify-center rounded-full bg-ink text-2xl text-lemon transition duration-300 group-hover:-rotate-45 group-hover:bg-sonic group-hover:text-white md:flex" aria-hidden="true">
+            →
+          </span>
+        </a>
+      ))}
     </div>
   </div>
-
-  <!-- Glow decorativo -->
-  <div class="absolute -bottom-32 -left-32 w-[30rem] h-[30rem] bg-emerald-400 opacity-10 rounded-full blur-3xl z-0"></div>
 </section>

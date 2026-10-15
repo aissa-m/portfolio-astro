@@ -1,73 +1,43 @@
 ---
+import SectionTitle from "./SectionTitle.astro";
+
+const rowA = [
+  ["javascript", "JavaScript"], ["typescript", "TypeScript"], ["react", "React"], ["nextjs", "Next.js"],
+  ["nodejs", "Node.js"], ["nestjs", "NestJS"], ["express", "Express"], ["astro", "Astro"], ["angular", "Angular"],
+  ["tailwindcss", "Tailwind"], ["html5", "HTML5"], ["css", "CSS"],
+];
+const rowB = [
+  ["php", "PHP"], ["laravel", "Laravel"], ["symfony", "Symfony"], ["mysql", "MySQL"], ["postgresql", "PostgreSQL"],
+  ["prisma", "Prisma"], ["docker", "Docker"], ["git", "Git"], ["github", "GitHub"], ["vercel", "Vercel"],
+  ["netlify", "Netlify"], ["render", "Render"], ["postman", "Postman"], ["ubuntu", "Ubuntu"],
+];
+const rows = [
+  { items: rowA, anim: "animate-marquee" },
+  { items: rowB, anim: "animate-marquee-reverse" },
+];
 ---
-<section id="skills" class="relative py-24">
-  <div class="max-w-6xl mx-auto px-6">
-    <h2 class="text-4xl font-bold text-emerald-600 text-center mb-20">Tech Stack</h2>
-
-    <!-- Contenedor mural -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-
-      <!-- 🟨 Stack JavaScript -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg">
-        <h3 class="text-2xl font-semibold text-yellow-500 mb-6">🟨 Stack JavaScript</h3>
-        <div class="flex flex-wrap gap-6 items-center">
-          <img src="/icons/javascript.svg" alt="JavaScript" class="w-10 h-10" />
-          <img src="/icons/typescript.svg" alt="TypeScript" class="w-10 h-10" />
-          <img src="/icons/react.svg" alt="React" class="w-10 h-10" />
-          <img src="/icons/nextjs.svg" alt="Next.js" class="w-10 h-10" />
-          <img src="/icons/nestjs.svg" alt="NestJS" class="w-10 h-10" />
-          <img src="/icons/express.svg" alt="Express" class="w-10 h-10" />
-          <img src="/icons/nodejs.svg" alt="Node.js" class="w-10 h-10" />
-          
-          <img src="/icons/astro.svg" alt="Astro" class="w-10 h-10" />
-          <img src="/icons/angular.svg" alt="Angular" class="w-10 h-10" />
-        </div>
-      </div>
-
-      <!-- 🟧 Stack PHP -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg">
-        <h3 class="text-2xl font-semibold text-rose-500 mb-6">🟧 Stack PHP</h3>
-        <div class="flex flex-wrap gap-6 items-center">
-          <img src="/icons/php.svg" alt="PHP" class="w-10 h-10" />
-          <img src="/icons/laravel.svg" alt="Laravel" class="w-10 h-10" />
-          <img src="/icons/symfony.svg" alt="Symfony" class="w-10 h-10" />
-          <img src="/icons/mysql.svg" alt="MySQL" class="w-10 h-10" />
-          <img src="/icons/phpmyadmin.svg" alt="PhpMyAdmin" class="w-10 h-10" />
-        </div>
-      </div>
-
-      <!-- 🟪 APIs & Tools -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg md:col-span-2">
-        <h3 class="text-2xl font-semibold text-purple-500 mb-6 text-center">🟪 APIs, DevOps & Herramientas</h3>
-        <div class="flex flex-wrap justify-center gap-6">
-          <img src="/icons/git.svg" alt="Git" class="w-10 h-10" />
-          <img src="/icons/github.svg" alt="GitHub" class="w-10 h-10" />
-          <img src="/icons/docker.svg" alt="Docker" class="w-10 h-10" />
-          <img src="/icons/ubuntu.svg" alt="Ubuntu" class="w-10 h-10" />
-          <img src="/icons/postman.svg" alt="Postman" class="w-10 h-10" />
-          <img src="/icons/swagger.svg" alt="Swagger" class="w-10 h-10" />
-          <img src="/icons/json.svg" alt="JSON" class="w-10 h-10" />
-          <img src="/icons/netlify.svg" alt="Netlify" class="w-10 h-10" />
-          <img src="/icons/vercel.svg" alt="Vercel" class="w-10 h-10" />
-          <img src="/icons/vite.svg" alt="Vite" class="w-10 h-10" />
-          <img src="/icons/render.svg" alt="Vite" class="w-10 h-10" />
-        </div>
-      </div>
-
-      <!-- 🟩 UI & Frontend Tools -->
-      <div class="bg-white/20 backdrop-blur-xl border border-white/30 rounded-2xl p-8 shadow-lg md:col-span-2">
-        <h3 class="text-2xl font-semibold text-emerald-500 mb-6 text-center">🟩 UI & Frontend Tools</h3>
-        <div class="flex flex-wrap justify-center gap-6">
-          <img src="/icons/html5.svg" alt="HTML5" class="w-10 h-10" />
-          <img src="/icons/css.svg" alt="CSS" class="w-10 h-10" />
-          <img src="/icons/bootstrap.svg" alt="Bootstrap" class="w-10 h-10" />          
-          <img src="/icons/tailwindcss.svg" alt="Tailwind" class="w-10 h-10" />
-        </div>
-      </div>
-
+<section id="skills" class="py-16 md:py-24">
+  <div class="px-4">
+    <div class="mx-auto max-w-6xl">
+      <SectionTitle
+        num="05"
+        kicker="Stack"
+        title="Con qué trabajo"
+        intro="Mi día a día es JavaScript de punta a punta, pero también me muevo con soltura en PHP."
+      />
     </div>
   </div>
 
-  <!-- Glow decorativo -->
-  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-emerald-400 opacity-10 rounded-full blur-3xl z-0"></div>
+  <div class="space-y-4 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_10%,#000_90%,transparent)]">
+    {rows.map((row) => (
+      <div class={`flex w-max gap-4 ${row.anim} hover:[animation-play-state:paused]`}>
+        {[...row.items, ...row.items].map(([icon, label], i) => (
+          <div class="flex shrink-0 items-center gap-3 rounded-full border border-ink/10 bg-white px-5 py-3 font-semibold" aria-hidden={i >= row.items.length ? "true" : undefined}>
+            <img src={`/icons/${icon}.svg`} alt="" class="h-7 w-7" loading="lazy" />
+            {label}
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
 </section>

@@ -1,26 +1,50 @@
 ---
-
+const links = [
+  { href: "#proyectos", label: "Proyectos" },
+  { href: "#servicios", label: "Qué hago" },
+  { href: "#sobre-mi", label: "Sobre mí" },
+  { href: "#experiencia", label: "Trayectoria" },
+];
 ---
 
-<header
-  class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 border-b border-white/30 shadow-md transition-all duration-300"
->
-  <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-extrabold text-emerald-600 tracking-tight">
-      <a href="/">
-        <img src="/icons/aissa2-big.png" alt="Logo" class="h-10 w-auto" />
-      </a>
-    </h1>
-    <nav class="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
-      <a href="#inicio" class="hover:text-emerald-600 transition">Inicio</a>
-      <a href="#sobre-mi" class="hover:text-emerald-600 transition">Sobre mí</a>
-      <a href="#skills" class="hover:text-emerald-600 transition">Skills</a>
-      <a href="#proyectos" class="hover:text-emerald-600 transition"
-        >Proyectos</a
-      >
-      <a href="#contacto" class="hover:text-emerald-600 transition">Contacto</a>
+<header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
+  <div class="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-ink/10 bg-white/70 px-4 py-2.5 backdrop-blur-xl md:px-6">
+    <a href="#inicio" class="flex items-center gap-2.5 font-display text-lg font-extrabold">
+      <img src="/icons/brand/aissa-logo.png" alt="" class="h-8 w-8" />
+      aissa
+    </a>
+
+    <nav class="hidden items-center gap-8 text-sm font-medium md:flex">
+      {links.map((l) => (
+        <a href={l.href} class="text-ink/70 transition hover:text-sonic">{l.label}</a>
+      ))}
     </nav>
+
+    <a href="#contacto" class="hidden rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white transition hover:bg-sonic md:inline-block">
+      Hablemos
+    </a>
+
+    <button id="menu-btn" class="p-1 md:hidden" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16" /></svg>
+    </button>
   </div>
+
+  <nav id="mobile-menu" class="mx-auto mt-2 hidden max-w-6xl flex-col rounded-3xl border border-ink/10 bg-white/90 p-3 backdrop-blur-xl md:hidden">
+    {links.map((l) => (
+      <a href={l.href} class="rounded-2xl px-4 py-3 font-medium transition hover:bg-ink/5">{l.label}</a>
+    ))}
+    <a href="#contacto" class="mt-1 rounded-2xl bg-ink px-4 py-3 text-center font-semibold text-white">Hablemos</a>
+  </nav>
 </header>
 
-<div class="h-20"></div>
+<script>
+  const btn = document.getElementById("menu-btn");
+  const menu = document.getElementById("mobile-menu");
+  const toggle = (open: boolean) => {
+    menu?.classList.toggle("hidden", !open);
+    menu?.classList.toggle("flex", open);
+    btn?.setAttribute("aria-expanded", String(open));
+  };
+  btn?.addEventListener("click", () => toggle(menu?.classList.contains("hidden") ?? false));
+  menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => toggle(false)));
+</script>
