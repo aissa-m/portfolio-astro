@@ -1,12 +1,15 @@
+---
+const title = "¿Tienes una idea? Hablemos.".split(" ");
+---
 <section id="contacto" class="px-4 py-16 md:py-24">
-  <div class="mesh mx-auto max-w-6xl rounded-[2.5rem] px-6 py-16 text-center md:px-14 md:py-24">
+  <div data-reveal class="mesh mx-auto max-w-6xl rounded-[2.5rem] px-6 py-16 text-center md:px-14 md:py-24">
     <div class="mesh-blob -right-20 -top-28 h-[26rem] w-[26rem] bg-lemon/90"></div>
     <div class="mesh-blob -bottom-32 -left-20 h-[30rem] w-[30rem] bg-sonic/70 [animation-delay:-8s]"></div>
     <div class="mesh-blob left-1/3 top-1/4 h-[22rem] w-[22rem] bg-sea [animation-delay:-14s]"></div>
 
     <p class="mb-4 font-semibold text-ink/70">06 — Contacto</p>
     <h2 class="mx-auto max-w-3xl text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl">
-      ¿Tienes una idea? Hablemos.
+      {title.map((w) => <><span class="word">{w}</span>{" "}</>)}
     </h2>
     <p class="mx-auto mt-6 max-w-xl text-lg text-ink/75">
       Un proyecto, una web que se ha quedado vieja o ganas de aprender a programar. Escríbeme y lo vemos.

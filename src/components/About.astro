@@ -14,7 +14,7 @@ const stickers = [
     <SectionTitle num="03" kicker="Sobre mí" title="Te cuento..." />
 
     <div class="grid gap-12 md:grid-cols-[1.2fr_1fr] md:gap-16">
-      <div class="space-y-5 text-lg leading-relaxed text-ink/75">
+      <div data-reveal class="space-y-5 text-lg leading-relaxed text-ink/75">
         <p>
           Llevo desde 2020 escribiendo código que resuelve problemas reales. He creado webs a medida
           para empresas en una agencia de marketing, he trabajado en proyectos para
@@ -31,7 +31,11 @@ const stickers = [
       </div>
 
       <div class="flex flex-wrap content-start gap-4">
-        {stickers.map((s) => <span class={`sticker ${s.cls}`}>{s.text}</span>)}
+        {stickers.map((s, i) => (
+          <span data-reveal class="inline-block" style={`--delay:${150 + i * 80}ms`}>
+            <span class={`sticker ${s.cls}`}>{s.text}</span>
+          </span>
+        ))}
       </div>
     </div>
   </div>

@@ -6,15 +6,18 @@ interface Props {
   intro?: string;
 }
 const { num, kicker, title, intro } = Astro.props;
+const words = title.split(" ");
 ---
 <div class="mb-10 grid gap-4 md:grid-cols-[1fr_1fr] md:items-end">
-  <div>
+  <div data-reveal>
     <p class="mb-3 flex items-center gap-3 text-sm font-semibold text-sonic">
       <span class="font-display text-base">{num}</span>
       <span class="h-px w-10 bg-sonic/40"></span>
       {kicker}
     </p>
-    <h2 class="text-4xl font-extrabold tracking-tight md:text-6xl">{title}</h2>
+    <h2 class="text-4xl font-extrabold tracking-tight md:text-6xl">
+      {words.map((w) => <><span class="word">{w}</span>{" "}</>)}
+    </h2>
   </div>
-  {intro && <p class="max-w-md text-lg text-ink/60 md:justify-self-end">{intro}</p>}
+  {intro && <p data-reveal class="max-w-md text-lg text-ink/60 [--delay:120ms] md:justify-self-end">{intro}</p>}
 </div>

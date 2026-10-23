@@ -1,4 +1,6 @@
 ---
+const lead = "Construyo productos que la gente".split(" ");
+const highlight = "usa de verdad.".split(" ");
 ---
 <section id="inicio" class="px-4 pt-24 md:pt-28">
   <div class="mesh mx-auto max-w-6xl rounded-[2.5rem] px-6 py-16 md:px-14 md:py-24">
@@ -14,9 +16,9 @@
         </p>
 
         <h1 class="text-5xl font-extrabold leading-[0.95] tracking-tight md:text-7xl">
-          Construyo productos que la gente
+          {lead.map((w) => <><span class="word">{w}</span>{" "}</>)}
           <span class="relative inline-block">
-            usa de verdad.
+            {highlight.map((w, i) => <><span class="word">{w}</span>{i < highlight.length - 1 && " "}</>)}
             <svg class="absolute -bottom-3 left-0 w-full" viewBox="0 0 300 14" fill="none" preserveAspectRatio="none" aria-hidden="true">
               <path d="M2 9C60 3 140 2 298 7" stroke="#0F1B2D" stroke-width="4" stroke-linecap="round" />
             </svg>
@@ -36,10 +38,10 @@
 
       <!-- Logo + pegatinas -->
       <div class="relative mx-auto aspect-square w-64 md:w-full md:max-w-sm">
-        <img src="/icons/brand/aissa-logo.png" alt="Logo de Aissa" class="h-full w-full object-contain p-8 drop-shadow-[0_20px_30px_rgb(15_27_45/0.25)]" />
-        <span class="sticker absolute -left-4 top-6 -rotate-6 bg-lemon">⚡ Full-Stack</span>
-        <span class="sticker absolute -right-2 top-1/2 rotate-3 bg-white">🧑‍🏫 Profe desde 2022</span>
-        <span class="sticker absolute bottom-4 left-2 -rotate-2 bg-sea">🚀 3 productos online</span>
+        <img src="/icons/brand/aissa-logo.png" alt="Logo de Aissa" class="parallax h-full w-full object-contain p-8 drop-shadow-[0_20px_30px_rgb(15_27_45/0.25)] [--depth:28px]" />
+        <span class="sticker parallax absolute -left-4 top-6 -rotate-6 bg-lemon [--depth:-40px]">⚡ Full-Stack</span>
+        <span class="sticker parallax absolute -right-2 top-1/2 rotate-3 bg-white [--depth:-56px]">🧑‍🏫 Profe desde 2022</span>
+        <span class="sticker parallax absolute bottom-4 left-2 -rotate-2 bg-sea [--depth:-32px]">🚀 3 productos online</span>
       </div>
     </div>
   </div>

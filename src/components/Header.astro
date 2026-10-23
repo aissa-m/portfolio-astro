@@ -8,7 +8,7 @@ const links = [
 ---
 
 <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4">
-  <div class="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-ink/10 bg-white/70 px-4 py-2.5 backdrop-blur-xl md:px-6">
+  <div id="nav-bar" class="mx-auto flex max-w-6xl items-center justify-between rounded-full border border-ink/10 bg-white/70 px-4 py-2.5 backdrop-blur-xl transition-shadow duration-300 md:px-6">
     <a href="#inicio" class="flex items-center gap-2.5 font-display text-lg font-extrabold">
       <img src="/icons/brand/aissa-logo.png" alt="" class="h-8 w-8" />
       aissa
@@ -16,7 +16,7 @@ const links = [
 
     <nav class="hidden items-center gap-8 text-sm font-medium md:flex">
       {links.map((l) => (
-        <a href={l.href} class="text-ink/70 transition hover:text-sonic">{l.label}</a>
+        <a href={l.href} class="nav-link">{l.label}</a>
       ))}
     </nav>
 
@@ -47,4 +47,23 @@ const links = [
   };
   btn?.addEventListener("click", () => toggle(menu?.classList.contains("hidden") ?? false));
   menu?.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => toggle(false)));
+
+  // Sombra al bajar
+  const bar = document.getElementById("nav-bar");
+  const onScroll = () => bar?.classList.toggle("shadow-[0_12px_30px_-18px_rgb(15_27_45/0.35)]", scrollY > 24);
+  addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  // Enlace activo según la sección visible
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
+  const spy = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        navLinks.forEach((l) => l.setAttribute("aria-current", String(l.hash === `#${entry.target.id}`)));
+      }
+    },
+    { rootMargin: "-45% 0px -50% 0px" }
+  );
+  document.querySelectorAll("main section[id]").forEach((s) => spy.observe(s));
 </script>

@@ -12,8 +12,65 @@ import "../styles/global.css";
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+    <script is:inline>document.documentElement.classList.add("js");</script>
   </head>
   <body class="min-h-screen bg-paper font-sans text-ink antialiased">
     <slot />
   </body>
 </html>
+
+<script>
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  // Aparición al hacer scroll
+  const revealer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("is-visible");
+        revealer.unobserve(entry.target);
+      }
+    },
+    { rootMargin: "0px 0px -10% 0px" }
+  );
+  document.querySelectorAll("[data-reveal]").forEach((el) => revealer.observe(el));
+
+  // Reflejo que sigue al ratón en los bloques de color
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll<HTMLElement>(".mesh").forEach((mesh) => {
+      const glow = document.createElement("div");
+      glow.className = "mesh-glow";
+      glow.setAttribute("aria-hidden", "true");
+      mesh.prepend(glow);
+
+      let target = { x: 0.5, y: 0.5 };
+      let pos = { x: 0.5, y: 0.5 };
+      let frame = 0;
+
+      const tick = () => {
+        pos.x += (target.x - pos.x) * 0.12;
+        pos.y += (target.y - pos.y) * 0.12;
+        mesh.style.setProperty("--mx", pos.x.toFixed(4));
+        mesh.style.setProperty("--my", pos.y.toFixed(4));
+        mesh.style.setProperty("--gx", `${pos.x * mesh.offsetWidth}px`);
+        mesh.style.setProperty("--gy", `${pos.y * mesh.offsetHeight}px`);
+        const moving = Math.abs(target.x - pos.x) + Math.abs(target.y - pos.y) > 0.0005;
+        frame = moving ? requestAnimationFrame(tick) : 0;
+      };
+      const start = () => {
+        if (!frame) frame = requestAnimationFrame(tick);
+      };
+
+      mesh.addEventListener("pointermove", (e) => {
+        const rect = mesh.getBoundingClientRect();
+        target = { x: (e.clientX - rect.left) / rect.width, y: (e.clientY - rect.top) / rect.height };
+        start();
+      });
+      mesh.addEventListener("pointerleave", () => {
+        target = { x: 0.5, y: 0.5 };
+        start();
+      });
+    });
+  }
+</script>
